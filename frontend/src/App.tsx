@@ -232,9 +232,12 @@ export default function App() {
     };
 
     try {
-      const backendHost = window.location.hostname;
-      const backendPort = "8000";
-      const response = await fetch(`http://${backendHost}:${backendPort}/api/verify`, {
+      // Use VITE_API_URL if set (production), otherwise derive from current host.
+      // Preserve the page protocol so HTTPS pages never make HTTP requests (mixed-content block).
+      const apiBase = import.meta.env.VITE_API_URL
+        ? import.meta.env.VITE_API_URL.replace(/\/$/, "")
+        : `${window.location.protocol}//${window.location.hostname}:8000`;
+      const response = await fetch(`${apiBase}/api/verify`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
