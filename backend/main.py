@@ -2,6 +2,8 @@ import os
 import logging
 from fastapi import FastAPI, HTTPException, Body
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field
 from typing import Optional
 from dotenv import load_dotenv
@@ -140,6 +142,24 @@ def verify_claim(payload: VerifyRequest):
     )
     
     return result
+
+# Serve static files from the frontend/dist folder
+frontend_dist_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "frontend", "dist")
+
+if os.path.exists(frontend_dist_dir):
+    logger.info(f"Serving static frontend files from: {frontend_dist_dir}")
+    app.mount("/assets", StaticFiles(directory=os.path.join(frontend_dist_dir, "assets")), name="assets")
+
+    @app.get("/{catchall:path}")
+    def read_index(catchall: str):
+        if catchall.startswith("api/") or catchall == "api":
+            raise HTTPException(status_code=404, detail="API route not found")
+        index_path = os.path.join(frontend_dist_dir, "index.html")
+        if os.path.exists(index_path):
+            return FileResponse(index_path)
+        raise HTTPException(status_code=404, detail="index.html not found")
+else:
+    logger.warning(f"Frontend dist directory not found at: {frontend_dist_dir}. Static file serving is disabled.")
 
 if __name__ == "__main__":
     import uvicorn

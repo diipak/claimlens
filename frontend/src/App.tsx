@@ -236,7 +236,9 @@ export default function App() {
       // Preserve the page protocol so HTTPS pages never make HTTP requests (mixed-content block).
       const apiBase = import.meta.env.VITE_API_URL
         ? import.meta.env.VITE_API_URL.replace(/\/$/, "")
-        : `${window.location.protocol}//${window.location.hostname}:8000`;
+        : (window.location.port === "5173" || window.location.port === "3000"
+            ? `${window.location.protocol}//${window.location.hostname}:8000`
+            : "");
       const response = await fetch(`${apiBase}/api/verify`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
