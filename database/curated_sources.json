@@ -1,0 +1,112 @@
+[
+  {
+    "title": "GCP Infrastructure Alpha Metro Expansion Report 2026",
+    "domain": "Department of Transportation",
+    "tier": 1,
+    "date": "2026-03-10",
+    "url": "https://dot.gov/reports/alpha-metro-2026",
+    "content": "The Alpha Metro Line expansion project, which commenced construction in 2022, is scheduled for final completion and testing in December 2028. As of Q1 2026, construction is 35% complete, with boring machines beginning work on the central tunnel segments. No train operations are permitted on any track section until final safety certification is completed in late 2028.",
+    "snippet": "Alpha Metro Line expansion is scheduled for final completion and testing in December 2028. It is 35% complete as of Q1 2026.",
+    "scenarioTag": "scenario_1"
+  },
+  {
+    "title": "Alpha Metro Progress Press Release",
+    "domain": "Metro Construction Bureau",
+    "tier": 2,
+    "date": "2026-04-01",
+    "url": "https://metrobureau.gov/news/alpha-progress",
+    "content": "Work continues on the Alpha Metro Line. Although social media rumors suggested early opening of the northern segment, the Bureau reiterates that the entire line will open together in late 2028. Commuters cannot access the tracks or stations before this date.",
+    "snippet": "Social media rumors of early segment opening are false; the entire line will open in late 2028.",
+    "scenarioTag": "scenario_1"
+  },
+  {
+    "title": "World Economic Outlook Database: April 2026",
+    "domain": "International Monetary Fund",
+    "tier": 1,
+    "date": "2026-04-15",
+    "url": "https://imf.org/data/weo-april-2026",
+    "content": "Global GDP rankings for the calendar year 2025/2026. In nominal GDP terms (current prices, USD), the top economies are: 1. United States ($28.7T), 2. China ($18.9T), 3. Germany ($4.8T), 4. Japan ($4.4T), 5. India ($4.1T). In Purchasing Power Parity (PPP) terms (current international dollars), the rankings are: 1. China ($37.2T), 2. United States ($28.7T), 3. India ($16.4T), 4. Japan ($6.8T), 5. Germany ($6.0T).",
+    "snippet": "Nominal GDP rank: 3. Germany ($4.8T), 4. Japan ($4.4T), 5. India ($4.1T). PPP GDP rank: 3. India ($16.4T), 4. Japan ($6.8T).",
+    "scenarioTag": "scenario_2"
+  },
+  {
+    "title": "Understanding Nominal vs PPP GDP Metrics",
+    "domain": "Financial Times Analysis",
+    "tier": 2,
+    "date": "2026-05-02",
+    "url": "https://ft.com/analysis/nominal-vs-ppp",
+    "content": "Economists frequently caution against conflating nominal GDP rankings with PPP rankings. While India stands as the 3rd largest economy in PPP terms due to lower local living costs, it remains the 5th largest economy in nominal exchange rate terms. Reporting PPP stats as 'nominal exchange rate size' is misleading for trade and import discussions.",
+    "snippet": "India is the 3rd largest in PPP terms but remains the 5th largest in nominal exchange rate terms.",
+    "scenarioTag": "scenario_2"
+  },
+  {
+    "title": "Consumer Price Index Inflation - May 2026",
+    "domain": "Bureau of Labor Statistics",
+    "tier": 1,
+    "date": "2026-05-15",
+    "url": "https://bls.gov/news/cpi-may-2026",
+    "content": "The Consumer Price Index for All Urban Consumers (CPI-U) increased 0.1 percent in May 2026 on a seasonally adjusted basis. Over the last 12 months, the all items index increased 3.2 percent before seasonal adjustment. This represents a significant decline from the peak inflation rate of 8.5 percent recorded in June 2022.",
+    "snippet": "CPI inflation rose 3.2 percent over the last 12 months (May 2026). Inflation peak was 8.5 percent in June 2022.",
+    "scenarioTag": "scenario_3"
+  },
+  {
+    "title": "National Inflation Trends Review",
+    "domain": "Reuters Economics",
+    "tier": 2,
+    "date": "2026-05-20",
+    "url": "https://reuters.com/news/inflation-trends-2026",
+    "content": "Inflation has stabilized in the 3.0%-3.5% range in early 2026. This is a dramatic drop from the post-pandemic supply chain crisis in mid-2022, when headline CPI inflation spiked to a decades-high 8.5% before aggressive rate hikes from the central bank brought it down.",
+    "snippet": "Inflation in 2026 is stable at 3.2%, down from the 2022 spike of 8.5%.",
+    "scenarioTag": "scenario_3"
+  },
+  {
+    "title": "Federal Reserve Monetary Policy Report Q2 2026",
+    "domain": "Federal Reserve System",
+    "tier": 1,
+    "date": "2026-06-01",
+    "url": "https://federalreserve.gov/monetary-2026-q2",
+    "content": "Inflation indicators show core PCE inflation at 2.4% and CPI inflation at 3.2%. The Board maintains its interest rate targets to ensure long-term stabilization towards the 2.0% objective.",
+    "snippet": "Federal Reserve reports CPI inflation at 3.2% as of Q2 2026.",
+    "scenarioTag": "scenario_3"
+  },
+  {
+    "title": "State Employment Statistics Q1 2026",
+    "domain": "State Dept of Labor",
+    "tier": 1,
+    "date": "2026-04-10",
+    "url": "https://statelabordep.gov/stats/q1-2026",
+    "content": "The unemployment rate in State X dropped to 3.8% in Q1 2026. This ranks State X as having the 12th lowest unemployment rate in the nation. The national average unemployment rate stands at 4.1% for the same quarter.",
+    "snippet": "State X unemployment rate is 3.8% in Q1 2026, ranking it as the 12th lowest in the nation.",
+    "scenarioTag": "backup"
+  },
+  {
+    "title": "State X Economic Health Assessment",
+    "domain": "Local News Chronicle",
+    "tier": 2,
+    "date": "2026-04-20",
+    "url": "https://chronicle.com/local-economics-2026",
+    "content": "While local politicians claim State X has 'the lowest unemployment in history,' state labor records place it at 12th nationally (3.8%). Historical records show State X reached a record low of 3.1% in 2019, making current claims of historical lows unsupported.",
+    "snippet": "State X is 12th lowest (3.8%), not the lowest in history. Record low was 3.1% in 2019.",
+    "scenarioTag": "backup"
+  },
+  {
+    "title": "Annual Gold Reserves Statement 2026",
+    "domain": "World Gold Council",
+    "tier": 1,
+    "date": "2026-05-05",
+    "url": "https://goldcouncil.org/reserves-2026",
+    "content": "Official gold holdings updates for Q1 2026. Country Y holds exactly 800 tonnes of gold in its central vaults, making it the 9th largest official gold holder globally. Reports of Country Y selling 200 tonnes in early 2026 are denied by the central bank; vault audits confirm reserves remain intact at 800 tonnes.",
+    "snippet": "Country Y gold reserves are verified at 800 tonnes as of Q1 2026, ranking it 9th globally.",
+    "scenarioTag": "backup"
+  },
+  {
+    "title": "Central Bank Audit Report Q1 2026",
+    "domain": "Central Bank of Country Y",
+    "tier": 1,
+    "date": "2026-04-30",
+    "url": "https://centralbank-y.gov/audit/q1-2026",
+    "content": "Our Q1 gold holdings audit confirms gold bullion assets of 800.23 metric tonnes. All assets are held securely, and no sales or leases were conducted in this fiscal period.",
+    "snippet": "Audit confirms Country Y holds 800.23 metric tonnes of gold reserves.",
+    "scenarioTag": "backup"
+  }
+]

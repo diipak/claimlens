@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ClaimLens | Audit Intelligence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#5160a2",
+                        "surface-container-high": "#2b2a29",
+                        "surface-container-highest": "#363434",
+                        "error-container": "#93000a",
+                        "surface-container-low": "#1c1b1b",
+                        "surface-container": "#201f1f",
+                        "surface-tint": "#cbc6bd",
+                        "outline": "#959087",
+                        "surface-bright": "#3a3938",
+                        "inverse-surface": "#e6e2e0",
+                        "on-primary-fixed-variant": "#494640",
+                        "on-primary-container": "#67645d",
+                        "surface-dim": "#141313",
+                        "on-primary-fixed": "#1d1b16",
+                        "tertiary-container": "#dde1ff",
+                        "secondary-container": "#454749",
+                        "primary": "#ffffff",
+                        "on-error": "#690005",
+                        "on-background": "#e6e2e0",
+                        "tertiary": "#ffffff",
+                        "on-secondary-container": "#b4b5b7",
+                        "surface-variant": "#363434",
+                        "on-tertiary-fixed": "#001354",
+                        "primary-fixed-dim": "#cbc6bd",
+                        "secondary-fixed": "#e2e2e5",
+                        "outline-variant": "#4a463f",
+                        "surface-container-lowest": "#0f0e0d",
+                        "primary-container": "#e8e2d9",
+                        "on-surface-variant": "#ccc6bc",
+                        "inverse-on-surface": "#31302f",
+                        "on-error-container": "#ffdad6",
+                        "surface": "#141313",
+                        "on-secondary-fixed-variant": "#454749",
+                        "on-primary": "#33302a",
+                        "on-secondary": "#2f3133",
+                        "background": "#141313",
+                        "on-tertiary": "#1a2b6a",
+                        "on-tertiary-fixed-variant": "#334282",
+                        "secondary": "#c6c6c9",
+                        "tertiary-fixed-dim": "#b8c4ff",
+                        "secondary-fixed-dim": "#c6c6c9",
+                        "error": "#ffb4ab",
+                        "on-surface": "#e6e2e0",
+                        "tertiary-fixed": "#dde1ff",
+                        "primary-fixed": "#e8e2d9",
+                        "on-secondary-fixed": "#1a1c1e",
+                        "inverse-primary": "#615e57"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "margin-mobile": "16px",
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "container-max": "1100px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "display-lg": ["Libre Caslon Text"],
+                        "headline-md": ["Libre Caslon Text"],
+                        "headline-lg": ["Libre Caslon Text"],
+                        "headline-lg-mobile": ["Libre Caslon Text"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .audit-card-success { border-left: 4px solid #10b981; }
+        .audit-card-warning { border-left: 4px solid #f59e0b; }
+        .audit-card-error { border-left: 4px solid #ef4444; }
+        
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #4a463f; border-radius: 10px; }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.6s cubic-bezier(0.2, 0, 0, 1) forwards;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary-container selection:text-on-primary-container overflow-hidden h-screen flex">
+<!-- Sidebar Navigation Shell -->
+<aside class="hidden md:flex flex-col h-full w-80 bg-surface-container border-r border-outline-variant shadow-lg z-50 transition-all duration-300 ease-in-out p-margin-mobile">
+<div class="mb-10 px-4">
+<h1 class="font-headline-md text-headline-md text-primary tracking-tight">ClaimLens</h1>
+</div>
+<nav class="flex-grow space-y-2">
+<a class="flex items-center gap-4 px-4 py-3 bg-primary-container text-on-primary-container font-bold rounded-lg transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+<span class="font-body-md text-body-md">New Audit</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="library_books">library_books</span>
+<span class="font-body-md text-body-md">Library</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="verified">verified</span>
+<span class="font-body-md text-body-md">Verified Sources</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-body-md text-body-md">Methodology</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-outline-variant">
+<div class="flex items-center gap-4 px-4 py-3">
+<img alt="Auditor" class="w-10 h-10 rounded-full bg-surface-container-high border border-outline-variant" data-alt="A professional headshot of a refined investigator in a high-end, minimalist corporate environment. The person has a neutral but intelligent expression, with soft cinematic lighting emphasizing a clean, high-contrast dark theme background. The overall aesthetic is professional, modern, and serious." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2Um5u-GiLE36d5_zHtCePSQBhWYVoShocQyLY_5KYht14M1Tyib3jqTSh-K2oSi8wgVf6kri0_Zhlcvv1oNSZdTL398VQdW3kiVi-jv-FMEzR36HYmMmeWLY9rFrYrL4l1rcT02c1r2rfwPoSjMIxdfRfZZ2r40E714eCnffcxXHSprHvg1j7Nzc0ceDzrJIMUIIyVp296Xv6mkTz9CxTam-7xmH0qoJSXQ7RLjuOJWSjeyoWchtydYae-nBIoQlrEasYS4K62C0"/>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-bold text-primary">Lead Auditor</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Verified Researcher</span>
+</div>
+</div>
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest rounded-lg mt-2 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</div>
+</aside>
+<main class="flex-grow flex flex-col h-screen overflow-hidden">
+<!-- Header -->
+<header class="flex justify-between items-center px-margin-desktop h-16 bg-background border-b border-outline-variant z-40 fixed top-0 left-80 right-0">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer" data-icon="menu">menu</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Audit Case #82719</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-4 py-2 bg-primary text-on-primary font-bold rounded-lg hover:opacity-90 transition-opacity flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="share">share</span>
+<span class="font-label-sm text-label-sm">Export Report</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-primary-container font-bold text-xs border border-outline-variant">
+                    JD
+                </div>
+</div>
+</header>
+<!-- Main Content Area -->
+<div class="flex-grow flex mt-16 overflow-hidden">
+<!-- Left Panel: Claim & Verdict -->
+<section class="w-1/3 min-w-[400px] border-r border-outline-variant bg-surface-dim p-margin-desktop flex flex-col overflow-y-auto custom-scrollbar">
+<div class="fade-in-up" style="animation-delay: 0.1s;">
+<span class="inline-block px-3 py-1 bg-surface-container-high rounded-full font-label-sm text-label-sm text-on-tertiary-container mb-6">Primary Claim Analysis</span>
+<h2 class="font-display-lg text-display-lg text-primary mb-8 leading-tight italic">"The renewable energy output of European sectors exceeded fossil fuel generation for the third consecutive quarter."</h2>
+<!-- Verdict Banner -->
+<div class="p-8 rounded-xl bg-surface-container-high border border-outline-variant mb-12 relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-2 h-full bg-emerald-500"></div>
+<div class="flex flex-col gap-2 relative z-10">
+<span class="font-label-sm text-label-sm text-emerald-500 uppercase tracking-widest">Audit Verdict</span>
+<span class="font-headline-lg text-headline-lg text-primary">High Veracity</span>
+<p class="font-body-md text-body-md text-on-surface-variant mt-4">Verified through cross-referencing Eurostat 2024 quarterly summaries and real-time grid data from 12 member states. Discrepancies within 0.4% margin.</p>
+</div>
+</div>
+<!-- Meta Detail Grid -->
+<div class="grid grid-cols-2 gap-6">
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Reliability Score</span>
+<span class="font-headline-md text-headline-md text-primary">98.2%</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sources Audited</span>
+<span class="font-headline-md text-headline-md text-primary">1,420</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Processing Time</span>
+<span class="font-headline-md text-headline-md text-primary">1.4s</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Methodology</span>
+<span class="font-headline-md text-headline-md text-primary">Neural Mesh</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Panel: Main Dashboard -->
+<section class="flex-grow bg-background p-margin-desktop overflow-y-auto custom-scrollbar">
+<div class="max-w-container-max mx-auto fade-in-up" style="animation-delay: 0.3s;">
+<!-- Progress / Steps -->
+<div class="flex items-center gap-4 mb-10 overflow-x-auto pb-4 no-scrollbar">
+<div class="flex items-center gap-3 shrink-0">
+<span class="w-6 h-6 rounded-full bg-emerald-500 text-surface flex items-center justify-center font-bold text-[10px]">1</span>
+<span class="font-label-sm text-label-sm text-primary">Context Extraction</span>
+<div class="w-12 h-px bg-outline-variant"></div>
+</div>
+<div class="flex items-center gap-3 shrink-0">
+<span class="w-6 h-6 rounded-full bg-emerald-500 text-surface flex items-center justify-center font-bold text-[10px]">2</span>
+<span class="font-label-sm text-label-sm text-primary">Entity Validation</span>
+<div class="w-12 h-px bg-outline-variant"></div>
+</div>
+<div class="flex items-center gap-3 shrink-0">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-[10px]">3</span>
+<span class="font-label-sm text-label-sm text-primary">Retrieval Indexing</span>
+<div class="w-12 h-px bg-outline-variant"></div>
+</div>
+<div class="flex items-center gap-3 shrink-0 opacity-40">
+<span class="w-6 h-6 rounded-full border border-outline-variant flex items-center justify-center font-bold text-[10px]">4</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Synthesizing Report</span>
+</div>
+</div>
+<div class="flex flex-col gap-12">
+<!-- Evidence Bento Grid -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Large Data Viz Card -->
+<div class="col-span-8 p-8 rounded-xl bg-surface-container-low border border-outline-variant group hover:border-outline transition-colors">
+<div class="flex justify-between items-start mb-6">
+<div class="flex flex-col">
+<h3 class="font-headline-md text-headline-md text-primary">Temporal Consistency</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Quarter-on-quarter generation delta across EU-27</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="insights">insights</span>
+</div>
+<div class="h-64 w-full bg-surface-container-high rounded-lg flex items-end justify-between p-6 overflow-hidden relative">
+<!-- Simple CSS Chart simulation -->
+<div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+<div class="w-1/12 bg-outline-variant h-[40%] rounded-t-sm z-10"></div>
+<div class="w-1/12 bg-outline-variant h-[55%] rounded-t-sm z-10"></div>
+<div class="w-1/12 bg-primary h-[75%] rounded-t-sm z-10 shadow-[0_0_20px_rgba(255,255,255,0.1)]"></div>
+<div class="w-1/12 bg-outline-variant h-[60%] rounded-t-sm z-10"></div>
+<div class="w-1/12 bg-primary h-[85%] rounded-t-sm z-10 shadow-[0_0_20px_rgba(255,255,255,0.1)]"></div>
+<div class="w-1/12 bg-outline-variant h-[45%] rounded-t-sm z-10"></div>
+<div class="w-1/12 bg-primary h-[95%] rounded-t-sm z-10 shadow-[0_0_20px_rgba(255,255,255,0.1)]"></div>
+<div class="w-1/12 bg-primary h-[90%] rounded-t-sm z-10 shadow-[0_0_20px_rgba(255,255,255,0.1)]"></div>
+</div>
+</div>
+<!-- Source Breakdown Card -->
+<div class="col-span-4 p-8 rounded-xl bg-surface-container-low border border-outline-variant">
+<h3 class="font-headline-md text-headline-md text-primary mb-6">Source Density</h3>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface-variant flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span> Government
+                                        </span>
+<span class="font-label-sm text-label-sm text-primary">64%</span>
+</div>
+<div class="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="w-[64%] h-full bg-emerald-500"></div>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface-variant flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-on-tertiary-container"></span> Peer Review
+                                        </span>
+<span class="font-label-sm text-label-sm text-primary">22%</span>
+</div>
+<div class="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="w-[22%] h-full bg-on-tertiary-container"></div>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface-variant flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-outline"></span> Journalism
+                                        </span>
+<span class="font-label-sm text-label-sm text-primary">14%</span>
+</div>
+<div class="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="w-[14%] h-full bg-outline"></div>
+</div>
+</div>
+</div>
+<!-- Detailed Evidence Cards -->
+<div class="col-span-12 flex flex-col gap-6">
+<h4 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest border-b border-outline-variant pb-2">Audit Logs &amp; Evidence</h4>
+<!-- Audit Card 1 -->
+<div class="audit-card-success p-6 bg-surface-container rounded-xl flex items-start gap-6 hover:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="w-12 h-12 bg-surface-container-highest rounded-lg flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" data-icon="description">description</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h5 class="font-body-lg text-body-lg text-primary font-bold">Eurostat Energy Balance Summary Q3 2024</h5>
+<span class="px-2 py-1 bg-secondary-container text-on-secondary-container rounded font-label-sm text-[10px]">PRIMARY_DOC</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Document confirms renewable share reached 41.2%, eclipsing combined coal and gas for the first time in historical records.</p>
+<div class="flex gap-4 mt-4">
+<span class="flex items-center gap-1 font-label-sm text-label-sm text-emerald-500">
+<span class="material-symbols-outlined text-sm" data-icon="verified_user">verified_user</span> Highly Relevant
+                                            </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Extracted: Oct 12, 2024</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" data-icon="open_in_new">open_in_new</span>
+</div>
+<!-- Audit Card 2 -->
+<div class="audit-card-success p-6 bg-surface-container rounded-xl flex items-start gap-6 hover:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="w-12 h-12 bg-surface-container-highest rounded-lg flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" data-icon="database">database</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h5 class="font-body-lg text-body-lg text-primary font-bold">ENTSO-E Real-Time Generation Ledger</h5>
+<span class="px-2 py-1 bg-secondary-container text-on-secondary-container rounded font-label-sm text-[10px]">LIVE_DATA</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Live grid data from 27 member states processed through validation layer. Matches primary claim with a variance of 0.02%.</p>
+<div class="flex gap-4 mt-4">
+<span class="flex items-center gap-1 font-label-sm text-label-sm text-emerald-500">
+<span class="material-symbols-outlined text-sm" data-icon="verified_user">verified_user</span> Corroborated
+                                            </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Refreshed: 4 mins ago</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" data-icon="open_in_new">open_in_new</span>
+</div>
+<!-- Audit Card 3 (Warning) -->
+<div class="audit-card-warning p-6 bg-surface-container rounded-xl flex items-start gap-6 hover:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="w-12 h-12 bg-surface-container-highest rounded-lg flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" data-icon="newspaper">newspaper</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h5 class="font-body-lg text-body-lg text-primary font-bold">"Europe's Green Hub" - Independent News Report</h5>
+<span class="px-2 py-1 bg-secondary-container text-on-secondary-container rounded font-label-sm text-[10px]">MEDIA</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Article correctly cites the trend but rounds figures up aggressively. Claim veracity remains solid despite journalistic fluff.</p>
+<div class="flex gap-4 mt-4">
+<span class="flex items-center gap-1 font-label-sm text-label-sm text-amber-500">
+<span class="material-symbols-outlined text-sm" data-icon="warning">warning</span> Minor Discrepancy
+                                            </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Published: 2 days ago</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" data-icon="open_in_new">open_in_new</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Interactive Layer: Loading Micro-Interactions -->
+<script>
+        document.querySelectorAll('.audit-card-success, .audit-card-warning').forEach(card => {
+            card.addEventListener('click', function() {
+                this.classList.add('scale-[0.98]');
+                setTimeout(() => {
+                    this.classList.remove('scale-[0.98]');
+                }, 150);
+            });
+        });
+
+        // Simple atmospheric parallax or hover shift for the charts
+        const chart = document.querySelector('.bg-surface-container-high');
+        chart.addEventListener('mousemove', (e) => {
+            const rect = chart.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            chart.style.setProperty('--mouse-x', `${x}px`);
+            chart.style.setProperty('--mouse-y', `${y}px`);
+        });
+    </script>
+</body></html>

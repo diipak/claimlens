@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>ClaimLens Audit Result</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        body {
+            background-color: #101214;
+            /* Deep Charcoal from Style Guidance */
+            color: #e6e2e0;
+            /* on-surface */
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .audit-glow-amber {
+            border-left: 4px solid #f59e0b;
+            /* Manual amber accent for verdict */
+        }
+
+        .audit-glow-success {
+            border-left: 2px solid #10b981;
+            /* Style Guidance left-accent */
+        }
+
+        .cubic-transition {
+            transition: all 0.4s cubic-bezier(0.2, 0, 0, 1);
+        }
+    </style>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#5160a2",
+                        "surface-container-high": "#2b2a29",
+                        "surface-container-highest": "#363434",
+                        "error-container": "#93000a",
+                        "surface-container-low": "#1c1b1b",
+                        "surface-container": "#201f1f",
+                        "surface-tint": "#cbc6bd",
+                        "outline": "#959087",
+                        "surface-bright": "#3a3938",
+                        "inverse-surface": "#e6e2e0",
+                        "on-primary-fixed-variant": "#494640",
+                        "on-primary-container": "#67645d",
+                        "surface-dim": "#141313",
+                        "on-primary-fixed": "#1d1b16",
+                        "tertiary-container": "#dde1ff",
+                        "secondary-container": "#454749",
+                        "primary": "#ffffff",
+                        "on-error": "#690005",
+                        "on-background": "#e6e2e0",
+                        "tertiary": "#ffffff",
+                        "on-secondary-container": "#b4b5b7",
+                        "surface-variant": "#363434",
+                        "on-tertiary-fixed": "#001354",
+                        "primary-fixed-dim": "#cbc6bd",
+                        "secondary-fixed": "#e2e2e5",
+                        "outline-variant": "#4a463f",
+                        "surface-container-lowest": "#0f0e0d",
+                        "primary-container": "#e8e2d9",
+                        "on-surface-variant": "#ccc6bc",
+                        "inverse-on-surface": "#31302f",
+                        "on-error-container": "#ffdad6",
+                        "surface": "#141313",
+                        "on-secondary-fixed-variant": "#454749",
+                        "on-primary": "#33302a",
+                        "on-secondary": "#2f3133",
+                        "background": "#141313",
+                        "on-tertiary": "#1a2b6a",
+                        "on-tertiary-fixed-variant": "#334282",
+                        "secondary": "#c6c6c9",
+                        "tertiary-fixed-dim": "#b8c4ff",
+                        "secondary-fixed-dim": "#c6c6c9",
+                        "error": "#ffb4ab",
+                        "on-surface": "#e6e2e0",
+                        "tertiary-fixed": "#dde1ff",
+                        "primary-fixed": "#e8e2d9",
+                        "on-secondary-fixed": "#1a1c1e",
+                        "inverse-primary": "#615e57"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "margin-mobile": "16px",
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "container-max": "1100px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "display-lg": ["Libre Caslon Text"],
+                        "headline-md": ["Libre Caslon Text"],
+                        "headline-lg": ["Libre Caslon Text"],
+                        "headline-lg-mobile": ["Libre Caslon Text"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body class="bg-background">
+    <!-- TopAppBar Shell -->
+    <header
+        class="fixed top-0 w-full z-50 bg-background border-b border-outline-variant flex justify-between items-center px-4 md:px-margin-desktop h-16">
+        <div class="flex items-center gap-4">
+            <span class="material-symbols-outlined text-primary cursor-pointer">menu</span>
+            <h1 class="font-headline-lg-mobile md:font-headline-lg text-primary">ClaimLens</h1>
+        </div>
+        <div class="flex items-center gap-6">
+            <nav class="hidden md:flex gap-8">
+                <a class="font-label-sm text-primary transition-colors" href="#">Audit</a>
+                <a class="font-label-sm text-on-surface-variant hover:text-primary transition-colors"
+                    href="#">History</a>
+                <a class="font-label-sm text-on-surface-variant hover:text-primary transition-colors"
+                    href="#">Sources</a>
+            </nav>
+            <div
+                class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden border border-outline-variant">
+                <img alt="User profile" class="w-full h-full object-cover"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuR2HJ_NAcxRrhTIqhoS8LgPA3vp9f4Z0jDw2mE3NUK24dJeRDwNw9QzL147qeGAIo9YVLG-g6Ny5JYlr82pmY0GcX543u9foiUpNbuwv5Ti4tLXLia7hQj5FhmRiIafIf-_HYhxlAQX6oCw5jlZKmDhQWp6OeDtwgLXsoGFS6w_KS4_NQnOP-apqUwy3kxTWaPNd9EVeeNr_GH-0bLRQ_2hYsRrnyMhV68U6kOYJudlv68Sm6INVoPFLDsjPfzWcaF_u3QrMsxYs" />
+            </div>
+        </div>
+    </header>
+    <main class="mt-24 mb-32 px-4 md:px-margin-desktop max-w-container-max mx-auto space-y-12">
+        <!-- Hero Verdict Card -->
+        <section class="animate-in fade-in slide-in-from-bottom-2 duration-700">
+            <div
+                class="bg-surface-container border border-outline-variant rounded-xl p-8 audit-glow-amber shadow-2xl relative overflow-hidden">
+                <!-- Atmospheric background element -->
+                <div class="absolute -right-20 -top-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+                <div class="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+                    <div>
+                        <span class="font-label-sm text-on-surface-variant uppercase tracking-widest block mb-2">Final
+                            Verdict</span>
+                        <h2 class="font-display-lg text-[#f59e0b] italic">Projected as Current</h2>
+                        <p class="font-body-lg text-on-surface-variant mt-4 max-w-2xl">
+                            The analyzed claim aligns with the latest available longitudinal data and peer-reviewed
+                            projections for the current fiscal cycle.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-4 py-2 bg-primary text-background font-label-sm rounded-full">Confidence:
+                            High</span>
+                        <span
+                            class="px-4 py-2 border border-outline-variant text-on-surface-variant font-label-sm rounded-full">Scope:
+                            Hybrid</span>
+                        <span
+                            class="px-4 py-2 border border-outline-variant text-on-surface-variant font-label-sm rounded-full">Sources:
+                            4</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Extracted Claim Block -->
+        <section class="space-y-4">
+            <h3 class="font-label-sm text-on-surface-variant uppercase tracking-widest">Extracted Claim</h3>
+            <div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant">
+                <blockquote class="font-headline-md text-primary leading-relaxed italic">
+                    "Renewable energy infrastructure in the Northern Hemisphere is expected to exceed the 40% threshold
+                    of total grid capacity by the end of Q4 this year, outperforming the 2022 projections by 12%."
+                </blockquote>
+            </div>
+        </section>
+        <!-- Main Content Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+            <!-- Left Column: Factual Evidence Audit -->
+            <div class="lg:col-span-7 space-y-8">
+                <section class="space-y-6">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary">fact_check</span>
+                        <h3 class="font-headline-md text-primary">Factual Evidence Audit</h3>
+                    </div>
+                    <ul class="space-y-6">
+                        <li class="flex gap-4 group">
+                            <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#10b981] ring-4 ring-[#10b981]/10"></div>
+                            <div class="space-y-1">
+                                <p class="font-body-md text-on-surface">Grid capacity in the EU-27 reached 38.4% as of
+                                    August, supporting a trajectory toward the 40% year-end target.</p>
+                                <span class="font-label-sm text-on-tertiary-container">Verified via Eurostat Energy
+                                    Bulletin</span>
+                            </div>
+                        </li>
+                        <li class="flex gap-4 group">
+                            <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#10b981] ring-4 ring-[#10b981]/10"></div>
+                            <div class="space-y-1">
+                                <p class="font-body-md text-on-surface">U.S. Department of Energy reports a 14%
+                                    year-over-year increase in onshore wind installations for the current period.</p>
+                                <span class="font-label-sm text-on-tertiary-container">Verified via DOE Office of
+                                    Renewables</span>
+                            </div>
+                        </li>
+                        <li class="flex gap-4 group">
+                            <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#f59e0b] ring-4 ring-[#f59e0b]/10"></div>
+                            <div class="space-y-1">
+                                <p class="font-body-md text-on-surface">North Asian markets (Japan, S. Korea) show a
+                                    slight lag in grid integration, currently at 36.1% capacity.</p>
+                                <span class="font-label-sm text-on-tertiary-container">Regional variance detected</span>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+                <section class="bg-surface-container-high p-8 rounded-xl space-y-4">
+                    <h3 class="font-headline-md text-primary">Why this verdict?</h3>
+                    <p class="font-body-md text-on-surface-variant leading-relaxed">
+                        While global averages are subject to localized volatility, the aggregate data from the four
+                        primary regulatory bodies indicates a 92% probability of the 40% threshold being met. The
+                        "Projected" status is used because final Q4 audited reports are pending, but all intermediary
+                        metrics (installation rate, interconnect queues, and generation output) are trending above the
+                        2022 baseline significantly.
+                    </p>
+                </section>
+            </div>
+            <!-- Right Column: What to do next -->
+            <div class="lg:col-span-5 space-y-8">
+                <section class="bg-primary-container p-8 rounded-xl text-on-primary">
+                    <h3 class="font-headline-md mb-6">What to do next</h3>
+                    <div class="space-y-4">
+                        <button
+                            class="w-full flex items-center justify-between p-4 bg-background text-on-background rounded-lg group hover:ring-2 ring-primary transition-all duration-300">
+                            <span class="font-label-sm">Download Full Verification PDF</span>
+                            <span
+                                class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">download</span>
+                        </button>
+                        <button
+                            class="w-full flex items-center justify-between p-4 bg-background text-on-background rounded-lg group hover:ring-2 ring-primary transition-all duration-300">
+                            <span class="font-label-sm">Cross-Reference with IPCC</span>
+                            <span
+                                class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">open_in_new</span>
+                        </button>
+                        <button
+                            class="w-full flex items-center justify-between p-4 border border-on-primary text-on-primary rounded-lg group hover:bg-on-primary hover:text-background transition-all duration-300">
+                            <span class="font-label-sm">Set "Fact Drift" Alert</span>
+                            <span
+                                class="material-symbols-outlined group-hover:rotate-12 transition-transform">notifications</span>
+                        </button>
+                    </div>
+                </section>
+                <div class="bg-surface-container rounded-xl border border-outline-variant p-6 space-y-4">
+                    <h4 class="font-label-sm text-on-surface-variant uppercase">Methodology</h4>
+                    <p class="text-[14px] font-body-md text-on-surface-variant">
+                        ClaimLens uses a Bayesian inference model to weigh conflicting reports. Tier 1 government data
+                        is weighted 3x over secondary news reporting.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Retrieved Evidence Index -->
+        <section class="space-y-8">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-primary">database</span>
+                    <h3 class="font-headline-md text-primary">Retrieved Evidence Index</h3>
+                </div>
+                <span class="font-label-sm text-on-surface-variant">Total Records Scanned: 124</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+                <!-- Source Card 1 -->
+                <div
+                    class="bg-surface-container border border-outline-variant rounded-xl p-6 hover:shadow-lg cubic-transition cursor-pointer group">
+                    <div class="flex justify-between items-start mb-4">
+                        <span
+                            class="px-2 py-1 bg-on-tertiary-container/10 text-on-tertiary-container rounded text-[10px] font-bold uppercase tracking-tighter">Tier
+                            1 • Gov</span>
+                        <span class="font-label-sm text-on-surface-variant italic">Oct 2023</span>
+                    </div>
+                    <h4
+                        class="font-body-lg text-primary font-bold group-hover:text-primary-container transition-colors">
+                        Eurostat: Energy Balance Monthly Update</h4>
+                    <p class="font-body-md text-on-surface-variant mt-2 line-clamp-2">"Intermediary reporting shows
+                        Northern Hemisphere aggregates climbing to 39.1% with strong performance in Nordic wind
+                        farms..."</p>
+                    <div class="mt-4 pt-4 border-t border-outline-variant flex items-center justify-between">
+                        <span class="font-label-sm text-primary">View Original Source</span>
+                        <span class="material-symbols-outlined text-on-surface-variant text-sm">link</span>
+                    </div>
+                </div>
+                <!-- Source Card 2 -->
+                <div
+                    class="bg-surface-container border border-outline-variant rounded-xl p-6 hover:shadow-lg cubic-transition cursor-pointer group">
+                    <div class="flex justify-between items-start mb-4">
+                        <span
+                            class="px-2 py-1 bg-on-tertiary-container/10 text-on-tertiary-container rounded text-[10px] font-bold uppercase tracking-tighter">Tier
+                            1 • Org</span>
+                        <span class="font-label-sm text-on-surface-variant italic">Sept 2023</span>
+                    </div>
+                    <h4
+                        class="font-body-lg text-primary font-bold group-hover:text-primary-container transition-colors">
+                        IEA: Renewable Energy Progress Report</h4>
+                    <p class="font-body-md text-on-surface-variant mt-2 line-clamp-2">"The pace of energy transition has
+                        exceeded early 2022 modeling by a significant margin of 12.4% on average across OECD nations..."
+                    </p>
+                    <div class="mt-4 pt-4 border-t border-outline-variant flex items-center justify-between">
+                        <span class="font-label-sm text-primary">View Original Source</span>
+                        <span class="material-symbols-outlined text-on-surface-variant text-sm">link</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- BottomNavBar Shell -->
+    <nav
+        class="md:hidden fixed bottom-0 w-full z-50 bg-surface-container-low border-t border-outline-variant rounded-t-xl shadow-sm flex justify-around items-center pt-2 pb-safe px-4">
+        <div
+            class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-5 py-1 transition-all">
+            <span class="material-symbols-outlined" data-icon="fact_check">fact_check</span>
+            <span class="font-label-sm text-label-sm">Audit</span>
+        </div>
+        <div
+            class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest transition-all">
+            <span class="material-symbols-outlined" data-icon="history">history</span>
+            <span class="font-label-sm text-label-sm">History</span>
+        </div>
+        <div
+            class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest transition-all">
+            <span class="material-symbols-outlined" data-icon="database">database</span>
+            <span class="font-label-sm text-label-sm">Sources</span>
+        </div>
+        <div
+            class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest transition-all">
+            <span class="material-symbols-outlined" data-icon="person">person</span>
+            <span class="font-label-sm text-label-sm">Profile</span>
+        </div>
+    </nav>
+    <script>
+        // Simple micro-interaction for cards
+        document.querySelectorAll('.bg-surface-container').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-4px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0px)';
+            });
+        });
+
+        // Dynamic date in methodology if needed
+        console.log("ClaimLens Audit Engine v1.0.4 Loaded");
+    </script>
+</body>
+
+</html>

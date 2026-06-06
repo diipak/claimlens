@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Libre+Caslon+Text:wght@400;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .audit-glow-unresolved {
+            border-left: 4px solid #ffb4ab;
+        }
+
+        .shimmer {
+            background: linear-gradient(90deg, rgba(38, 38, 38, 0) 0%, rgba(38, 38, 38, 1) 50%, rgba(38, 38, 38, 0) 100%);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite linear;
+        }
+
+        @keyframes shimmer {
+            from {
+                background-position: -200% 0;
+            }
+
+            to {
+                background-position: 200% 0;
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s cubic-bezier(0.2, 0, 0, 1) forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#5160a2",
+                        "surface-container-high": "#2b2a29",
+                        "surface-container-highest": "#363434",
+                        "error-container": "#93000a",
+                        "surface-container-low": "#1c1b1b",
+                        "surface-container": "#201f1f",
+                        "surface-tint": "#cbc6bd",
+                        "outline": "#959087",
+                        "surface-bright": "#3a3938",
+                        "inverse-surface": "#e6e2e0",
+                        "on-primary-fixed-variant": "#494640",
+                        "on-primary-container": "#67645d",
+                        "surface-dim": "#141313",
+                        "on-primary-fixed": "#1d1b16",
+                        "tertiary-container": "#dde1ff",
+                        "secondary-container": "#454749",
+                        "primary": "#ffffff",
+                        "on-error": "#690005",
+                        "on-background": "#e6e2e0",
+                        "tertiary": "#ffffff",
+                        "on-secondary-container": "#b4b5b7",
+                        "surface-variant": "#363434",
+                        "on-tertiary-fixed": "#001354",
+                        "primary-fixed-dim": "#cbc6bd",
+                        "secondary-fixed": "#e2e2e5",
+                        "outline-variant": "#4a463f",
+                        "surface-container-lowest": "#0f0e0d",
+                        "primary-container": "#e8e2d9",
+                        "on-surface-variant": "#ccc6bc",
+                        "inverse-on-surface": "#31302f",
+                        "on-error-container": "#ffdad6",
+                        "surface": "#141313",
+                        "on-secondary-fixed-variant": "#454749",
+                        "on-primary": "#33302a",
+                        "on-secondary": "#2f3133",
+                        "background": "#141313",
+                        "on-tertiary": "#1a2b6a",
+                        "on-tertiary-fixed-variant": "#334282",
+                        "secondary": "#c6c6c9",
+                        "tertiary-fixed-dim": "#b8c4ff",
+                        "secondary-fixed-dim": "#c6c6c9",
+                        "error": "#ffb4ab",
+                        "on-surface": "#e6e2e0",
+                        "tertiary-fixed": "#dde1ff",
+                        "primary-fixed": "#e8e2d9",
+                        "on-secondary-fixed": "#1a1c1e",
+                        "inverse-primary": "#615e57"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "margin-mobile": "16px",
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "container-max": "1100px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "display-lg": ["Libre Caslon Text"],
+                        "headline-md": ["Libre Caslon Text"],
+                        "headline-lg": ["Libre Caslon Text"],
+                        "headline-lg-mobile": ["Libre Caslon Text"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+    <!-- Top Navigation -->
+    <header
+        class="fixed top-0 w-full z-50 bg-background border-b border-outline-variant flex justify-between items-center px-margin-mobile h-16 md:px-margin-desktop">
+        <div class="flex items-center gap-4">
+            <span class="material-symbols-outlined text-primary cursor-pointer">menu</span>
+            <h1
+                class="font-headline-lg-mobile text-headline-lg-mobile text-primary tracking-tight md:font-headline-lg md:text-headline-lg">
+                ClaimLens</h1>
+        </div>
+        <div class="flex items-center gap-4">
+            <button
+                class="hidden md:flex text-on-surface-variant hover:text-primary transition-colors font-label-sm uppercase tracking-widest text-[10px]">New
+                Audit</button>
+            <div
+                class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden border border-outline-variant">
+                <img alt="User" class="w-full h-full object-cover"
+                    data-alt="A professional studio headshot of a sophisticated researcher with a calm expression. The lighting is soft and directional, creating a clean editorial look. The background is a muted dark charcoal, matching the app's premium newsroom aesthetic. High-quality digital photography with sharp focus on the eyes."
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuASJjn9IHid74RMRPNs6BT0BNLYlRT44tJo1XUs6BrD62f_qFKapTZvm9Irqyd6LLLLPfsDiJ2f5_Tce-NmmyuMnzkcMy1EP1A4AFin-F7UqA2hXxg9wOoeu4khBDn111F5Mcvq-53Dg7fXybFXo-UNLUhnYq7EIr9_-YjwbQ5qIcQrkUYXtC5HEnm9Ev19zk3JdN4ds35mzuJzOI620m7qI3Lk-sWl8ORl6MAvOH4w9ricd69xXc9IYGkJUF-yFKvVNan4br-QM0g" />
+            </div>
+        </div>
+    </header>
+    <main class="pt-24 pb-32 px-margin-mobile max-w-container-max mx-auto md:px-margin-desktop">
+        <!-- Verdict Banner -->
+        <section class="fade-in-up mb-12">
+            <div
+                class="bg-surface-container-low p-8 rounded-xl border border-outline-variant audit-glow-unresolved relative overflow-hidden">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
+                    <div>
+                        <span class="text-error font-label-sm tracking-widest uppercase mb-2 block">Current
+                            Status</span>
+                        <h2 class="font-display-lg text-display-lg text-error mb-4">Unresolved</h2>
+                        <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                            We couldn't find enough verifiable evidence to confirm or refute this claim. Our systems are
+                            continuing to monitor new data releases.
+                        </p>
+                    </div>
+                    <div class="flex flex-col gap-2 shrink-0">
+                        <div class="bg-surface-container-highest p-4 rounded-lg border border-outline-variant">
+                            <span class="text-on-surface-variant font-label-sm block mb-1">Inconclusive
+                                Meta-Score</span>
+                            <div class="flex items-center gap-2">
+                                <div class="h-2 w-32 bg-secondary-container rounded-full overflow-hidden">
+                                    <div class="h-full bg-error w-1/3 opacity-50"></div>
+                                </div>
+                                <span class="font-bold text-primary">34%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Artistic Background Shimmer -->
+                <div class="absolute inset-0 opacity-10 pointer-events-none">
+                    <div class="shimmer h-full w-full"></div>
+                </div>
+            </div>
+        </section>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+            <!-- Analysis Breakdown -->
+            <div class="lg:col-span-7 space-y-gutter">
+                <div class="fade-in-up" style="animation-delay: 0.1s;">
+                    <h3 class="font-headline-md text-headline-md mb-6 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-on-tertiary-container">analytics</span>
+                        Reasoning Breakdown
+                    </h3>
+                    <div class="space-y-4">
+                        <!-- Reason Card 1 -->
+                        <div
+                            class="bg-surface-container p-6 rounded-xl border border-outline-variant hover:border-on-surface-variant transition-colors group">
+                            <div class="flex justify-between items-start mb-3">
+                                <h4 class="font-bold text-primary text-lg">Weak Retrieval</h4>
+                                <span
+                                    class="material-symbols-outlined text-error opacity-70 group-hover:opacity-100 transition-opacity">error_outline</span>
+                            </div>
+                            <p class="text-on-surface-variant text-body-md mb-4">
+                                Our crawlers identified 12 mentions across social media and independent blogs, but
+                                lacked any matches in peer-reviewed journals or official government databases.
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span
+                                    class="bg-surface-container-highest text-on-surface-variant px-3 py-1 rounded-full text-xs font-medium border border-outline-variant">Missing
+                                    .gov sources</span>
+                                <span
+                                    class="bg-surface-container-highest text-on-surface-variant px-3 py-1 rounded-full text-xs font-medium border border-outline-variant">No
+                                    Academic Cite</span>
+                            </div>
+                        </div>
+                        <!-- Reason Card 2 -->
+                        <div
+                            class="bg-surface-container p-6 rounded-xl border border-outline-variant hover:border-on-surface-variant transition-colors group">
+                            <div class="flex justify-between items-start mb-3">
+                                <h4 class="font-bold text-primary text-lg">Ambiguous Wording</h4>
+                                <span
+                                    class="material-symbols-outlined text-error opacity-70 group-hover:opacity-100 transition-opacity">language</span>
+                            </div>
+                            <p class="text-on-surface-variant text-body-md mb-4">
+                                The claim uses subjective qualifiers ("unprecedented," "huge") which lack standard
+                                metric benchmarks for objective verification.
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span
+                                    class="bg-surface-container-highest text-on-surface-variant px-3 py-1 rounded-full text-xs font-medium border border-outline-variant">Linguistic
+                                    Bias</span>
+                                <span
+                                    class="bg-surface-container-highest text-on-surface-variant px-3 py-1 rounded-full text-xs font-medium border border-outline-variant">Subjective
+                                    Predicates</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Related Sources Section -->
+                <div class="fade-in-up" style="animation-delay: 0.2s;">
+                    <h3 class="font-headline-md text-headline-md mb-6 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-on-tertiary-container">database</span>
+                        Top Related Sources
+                    </h3>
+                    <div class="space-y-3">
+                        <div
+                            class="bg-surface-container-low flex items-center justify-between p-4 rounded-lg border-l-2 border-outline-variant hover:bg-surface-container-high transition-all cursor-pointer">
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-10 h-10 rounded bg-surface-container-highest flex items-center justify-center text-primary font-bold">
+                                    R</div>
+                                <div>
+                                    <p class="text-primary font-medium">Reuters Archive 2024</p>
+                                    <p class="text-on-surface-variant text-xs">Mentions context, but lacks direct claim
+                                        confirmation.</p>
+                                </div>
+                            </div>
+                            <span class="material-symbols-outlined text-on-surface-variant text-sm">open_in_new</span>
+                        </div>
+                        <div
+                            class="bg-surface-container-low flex items-center justify-between p-4 rounded-lg border-l-2 border-outline-variant hover:bg-surface-container-high transition-all cursor-pointer">
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-10 h-10 rounded bg-surface-container-highest flex items-center justify-center text-primary font-bold">
+                                    W</div>
+                                <div>
+                                    <p class="text-primary font-medium">WHO Technical Report</p>
+                                    <p class="text-on-surface-variant text-xs">Discusses peripheral variables without
+                                        concluding.</p>
+                                </div>
+                            </div>
+                            <span class="material-symbols-outlined text-on-surface-variant text-sm">open_in_new</span>
+                        </div>
+                        <div
+                            class="bg-surface-container-low flex items-center justify-between p-4 rounded-lg border-l-2 border-outline-variant hover:bg-surface-container-high transition-all cursor-pointer">
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-10 h-10 rounded bg-surface-container-highest flex items-center justify-center text-primary font-bold">
+                                    .G</div>
+                                <div>
+                                    <p class="text-primary font-medium">Data.gov Dataset (Internal)</p>
+                                    <p class="text-on-surface-variant text-xs">Raw numbers found; requires specialized
+                                        processing.</p>
+                                </div>
+                            </div>
+                            <span class="material-symbols-outlined text-on-surface-variant text-sm">open_in_new</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Guidance Sidebar -->
+            <aside class="lg:col-span-5 space-y-gutter fade-in-up" style="animation-delay: 0.3s;">
+                <div class="bg-primary-container text-on-primary-container p-8 rounded-xl sticky top-24">
+                    <h3 class="font-headline-md text-headline-md mb-4">Refine Your Audit</h3>
+                    <p class="font-body-md mb-8 opacity-80">Getting a definitive result often requires a more granular
+                        lens. Try these professional audit tactics:</p>
+                    <ul class="space-y-6">
+                        <li class="flex gap-4">
+                            <span
+                                class="material-symbols-outlined p-2 bg-on-primary-container text-primary-container rounded-lg h-fit">edit_note</span>
+                            <div>
+                                <h4 class="font-bold mb-1">Add more context</h4>
+                                <p class="text-sm opacity-70">Include dates, specific locations, or people involved to
+                                    narrow the search parameters.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <span
+                                class="material-symbols-outlined p-2 bg-on-primary-container text-primary-container rounded-lg h-fit">add_photo_alternate</span>
+                            <div>
+                                <h4 class="font-bold mb-1">Upload a screenshot</h4>
+                                <p class="text-sm opacity-70">Visual evidence can help our OCR systems identify the
+                                    original publication source more accurately.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <span
+                                class="material-symbols-outlined p-2 bg-on-primary-container text-primary-container rounded-lg h-fit">checklist</span>
+                            <div>
+                                <h4 class="font-bold mb-1">Check related sources</h4>
+                                <p class="text-sm opacity-70">Review the sources we found to see if you can provide the
+                                    missing link from your own library.</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <button
+                        class="w-full mt-10 bg-on-primary-container text-primary-container py-4 rounded-lg font-bold hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+                        Update Audit Parameters
+                        <span class="material-symbols-outlined">arrow_forward</span>
+                    </button>
+                </div>
+                <!-- Status Card -->
+                <div class="bg-surface-container-high p-6 rounded-xl border border-outline-variant">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-2 h-2 rounded-full bg-error animate-pulse"></div>
+                        <span class="font-label-sm uppercase tracking-widest text-xs">Ongoing Investigation</span>
+                    </div>
+                    <p class="text-on-surface-variant text-sm italic">"We are currently polling 14 additional databases.
+                        Check back in 2 hours for a recursive update."</p>
+                </div>
+            </aside>
+        </div>
+    </main>
+    <!-- Bottom Navigation (Mobile) -->
+    <nav
+        class="md:hidden fixed bottom-0 w-full z-50 bg-surface-container-low border-t border-outline-variant rounded-t-xl shadow-sm flex justify-around items-center pt-2 pb-6 px-4">
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest transition-all p-2 rounded-lg"
+            href="#">
+            <span class="material-symbols-outlined">fact_check</span>
+            <span class="font-label-sm text-label-sm mt-1">Audit</span>
+        </a>
+        <a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-5 py-1 scale-95 active:scale-90 transition-transform duration-200"
+            href="#">
+            <span class="material-symbols-outlined">history</span>
+            <span class="font-label-sm text-label-sm mt-1">History</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest transition-all p-2 rounded-lg"
+            href="#">
+            <span class="material-symbols-outlined">database</span>
+            <span class="font-label-sm text-label-sm mt-1">Sources</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest transition-all p-2 rounded-lg"
+            href="#">
+            <span class="material-symbols-outlined">person</span>
+            <span class="font-label-sm text-label-sm mt-1">Profile</span>
+        </a>
+    </nav>
+    <script>
+        // Micro-interaction for source cards
+        document.querySelectorAll('.bg-surface-container-low').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateX(4px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateX(0)';
+            });
+        });
+
+        // Simple log for "Update" button
+        document.querySelector('button.bg-on-primary-container')?.addEventListener('click', () => {
+            console.log('Relaunching audit modal...');
+        });
+    </script>
+</body>
+
+</html>

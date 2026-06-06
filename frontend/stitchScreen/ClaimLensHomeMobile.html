@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>ClaimLens | Audit Intelligence</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Libre+Caslon+Text:wght@400;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#5160a2",
+                        "surface-container-high": "#2b2a29",
+                        "surface-container-highest": "#363434",
+                        "error-container": "#93000a",
+                        "surface-container-low": "#1c1b1b",
+                        "surface-container": "#201f1f",
+                        "surface-tint": "#cbc6bd",
+                        "outline": "#959087",
+                        "surface-bright": "#3a3938",
+                        "inverse-surface": "#e6e2e0",
+                        "on-primary-fixed-variant": "#494640",
+                        "on-primary-container": "#67645d",
+                        "surface-dim": "#141313",
+                        "on-primary-fixed": "#1d1b16",
+                        "tertiary-container": "#dde1ff",
+                        "secondary-container": "#454749",
+                        "primary": "#ffffff",
+                        "on-error": "#690005",
+                        "on-background": "#e6e2e0",
+                        "tertiary": "#ffffff",
+                        "on-secondary-container": "#b4b5b7",
+                        "surface-variant": "#363434",
+                        "on-tertiary-fixed": "#001354",
+                        "primary-fixed-dim": "#cbc6bd",
+                        "secondary-fixed": "#e2e2e5",
+                        "outline-variant": "#4a463f",
+                        "surface-container-lowest": "#0f0e0d",
+                        "primary-container": "#e8e2d9",
+                        "on-surface-variant": "#ccc6bc",
+                        "inverse-on-surface": "#31302f",
+                        "on-error-container": "#ffdad6",
+                        "surface": "#141313",
+                        "on-secondary-fixed-variant": "#454749",
+                        "on-primary": "#33302a",
+                        "on-secondary": "#2f3133",
+                        "background": "#141313",
+                        "on-tertiary": "#1a2b6a",
+                        "on-tertiary-fixed-variant": "#334282",
+                        "secondary": "#c6c6c9",
+                        "tertiary-fixed-dim": "#b8c4ff",
+                        "secondary-fixed-dim": "#c6c6c9",
+                        "error": "#ffb4ab",
+                        "on-surface": "#e6e2e0",
+                        "tertiary-fixed": "#dde1ff",
+                        "primary-fixed": "#e8e2d9",
+                        "on-secondary-fixed": "#1a1c1e",
+                        "inverse-primary": "#615e57"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "margin-mobile": "16px",
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "container-max": "1100px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "display-lg": ["Libre Caslon Text"],
+                        "headline-md": ["Libre Caslon Text"],
+                        "headline-lg": ["Libre Caslon Text"],
+                        "headline-lg-mobile": ["Libre Caslon Text"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .audit-glow {
+            border-left: 2px solid transparent;
+        }
+
+        .audit-glow:hover {
+            border-left: 2px solid #ffffff;
+        }
+
+        .cubic-bezier-transition {
+            transition: all 400ms cubic-bezier(0.2, 0, 0, 1);
+        }
+
+        body {
+            background-color: #101214;
+            color: #e6e2e0;
+        }
+
+        textarea::placeholder {
+            color: #4a463f;
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body class="font-body-md text-body-md overflow-x-hidden">
+    <!-- TopAppBar -->
+    <header
+        class="fixed top-0 w-full z-50 bg-background dark:bg-background border-b border-outline-variant flex justify-between items-center px-margin-mobile h-16 md:px-margin-desktop">
+        <div class="flex items-center gap-4">
+            <span class="material-symbols-outlined text-primary cursor-pointer" data-icon="menu">menu</span>
+            <h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary tracking-tight">ClaimLens</h1>
+        </div>
+        <div class="flex items-center gap-4">
+            <div class="hidden md:flex gap-6 items-center px-4">
+                <a class="font-label-sm text-label-sm text-primary hover:text-primary transition-colors" href="#">New
+                    Audit</a>
+                <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors"
+                    href="#">Library</a>
+                <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors"
+                    href="#">Sources</a>
+            </div>
+            <div
+                class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-highest flex items-center justify-center border border-outline-variant">
+                <span class="material-symbols-outlined text-[18px]" data-icon="person">person</span>
+            </div>
+        </div>
+    </header>
+    <main class="pt-24 pb-32 px-margin-mobile md:px-0 max-w-[800px] mx-auto min-h-screen flex flex-col items-center">
+        <!-- Shared from X Pill -->
+        <div class="mb-8 opacity-0 translate-y-4 animate-[fadeInUp_0.6s_ease-out_forwards] flex items-center gap-2 bg-surface-container-high px-4 py-1.5 rounded-full border border-outline-variant"
+            id="import-pill">
+            <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            <span class="font-label-sm text-label-sm text-on-surface-variant">Imported from X.com (Twitter)</span>
+            <button
+                class="material-symbols-outlined text-[14px] ml-1 text-on-surface-variant hover:text-primary transition-colors"
+                data-icon="close" onclick="document.getElementById('import-pill').remove()">close</button>
+        </div>
+        <style>
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(12px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        </style>
+        <section class="w-full flex flex-col gap-8">
+            <!-- Hero Headline -->
+            <div class="text-center md:text-left space-y-2">
+                <h2 class="font-display-lg text-[40px] md:text-display-lg text-primary leading-tight">Verify anything.
+                </h2>
+                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-[500px]">Institutional-grade audits
+                    for claims, screenshots, and threads.</p>
+            </div>
+            <!-- Main Input Card -->
+            <div
+                class="bg-[#1A1C1E] border border-[#262626] rounded-xl overflow-hidden shadow-2xl cubic-bezier-transition group focus-within:border-outline">
+                <!-- Segmented Control -->
+                <div class="flex border-b border-outline-variant p-1 bg-surface-container-low">
+                    <button
+                        class="flex-1 py-3 px-2 rounded-lg font-label-sm text-label-sm bg-secondary-container text-on-secondary-container flex items-center justify-center gap-2 transition-all">
+                        <span class="material-symbols-outlined text-[18px]" data-icon="subject">subject</span>
+                        Text
+                    </button>
+                    <button
+                        class="flex-1 py-3 px-2 rounded-lg font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container-highest flex items-center justify-center gap-2 transition-all">
+                        <span class="material-symbols-outlined text-[18px]" data-icon="link">link</span>
+                        Link
+                    </button>
+                    <button
+                        class="flex-1 py-3 px-2 rounded-lg font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container-highest flex items-center justify-center gap-2 transition-all">
+                        <span class="material-symbols-outlined text-[18px]"
+                            data-icon="screenshot_region">screenshot_region</span>
+                        Screenshot
+                    </button>
+                    <button
+                        class="flex-1 py-3 px-2 rounded-lg font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container-highest flex items-center justify-center gap-2 transition-all">
+                        <span class="material-symbols-outlined text-[18px]" data-icon="upload_file">upload_file</span>
+                        Import
+                    </button>
+                </div>
+                <!-- Input Area -->
+                <div class="p-6 relative">
+                    <textarea
+                        class="w-full bg-transparent border-none focus:ring-0 font-body-lg text-body-lg text-primary resize-none placeholder:italic"
+                        id="claim-input" placeholder="Paste a claim, news snippet, or social post to audit..."
+                        rows="6"></textarea>
+                    <div class="flex justify-between items-end mt-4">
+                        <div class="flex gap-2">
+                            <span class="font-label-sm text-label-sm text-outline-variant">Auto-detecting
+                                sources...</span>
+                        </div>
+                        <button
+                            class="bg-primary-container text-on-primary hover:bg-primary transition-all px-8 py-3 rounded-lg font-label-sm text-label-sm flex items-center gap-2 shadow-lg active:scale-95 group">
+                            Audit Claim
+                            <span
+                                class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform"
+                                data-icon="bolt">bolt</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Demo Chips -->
+            <div class="flex flex-wrap gap-3 items-center justify-center md:justify-start">
+                <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mr-2">Try a
+                    demo:</span>
+                <button
+                    class="bg-surface-container-high hover:bg-surface-container-highest border border-outline-variant px-4 py-2 rounded-full font-label-sm text-label-sm text-on-secondary-container cubic-bezier-transition flex items-center gap-2"
+                    onclick="fillClaim('The Alpha Metro Line is confirmed to open in early 2026 across 12 zones.')">
+                    <span class="material-symbols-outlined text-[14px]" data-icon="train">train</span>
+                    2026 Alpha Metro opening
+                </button>
+                <button
+                    class="bg-surface-container-high hover:bg-surface-container-highest border border-outline-variant px-4 py-2 rounded-full font-label-sm text-label-sm text-on-secondary-container cubic-bezier-transition flex items-center gap-2"
+                    onclick="fillClaim('Current reports suggest the Global GDP ranking will shift by 2030 with emerging markets taking 4 of the top 5 spots.')">
+                    <span class="material-symbols-outlined text-[14px]" data-icon="analytics">analytics</span>
+                    Global GDP ranking
+                </button>
+                <button
+                    class="bg-surface-container-high hover:bg-surface-container-highest border border-outline-variant px-4 py-2 rounded-full font-label-sm text-label-sm text-on-secondary-container cubic-bezier-transition flex items-center gap-2"
+                    onclick="fillClaim('Breakthrough in fusion energy yields 150% more power than input at the North Star facility.')">
+                    <span class="material-symbols-outlined text-[14px]"
+                        data-icon="energy_program_saving">energy_program_saving</span>
+                    Energy Breakthrough
+                </button>
+            </div>
+            <!-- How it works -->
+            <details class="mt-12 group">
+                <summary
+                    class="flex items-center justify-center gap-2 font-label-sm text-label-sm text-outline cursor-pointer hover:text-primary transition-colors list-none select-none">
+                    <span class="material-symbols-outlined text-[18px] transition-transform group-open:rotate-180"
+                        data-icon="expand_more">expand_more</span>
+                    HOW CLAIMLENS WORKS
+                </summary>
+                <div class="mt-6 grid md:grid-cols-3 gap-6 animate-[fadeIn_0.4s_ease-out]">
+                    <div class="bg-surface-container-low p-5 rounded-xl border border-outline-variant/30">
+                        <div
+                            class="mb-3 w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary" data-icon="database">database</span>
+                        </div>
+                        <h4 class="font-label-sm text-label-sm text-primary mb-2 uppercase">1. Triple-Source Check</h4>
+                        <p class="font-body-md text-[14px] text-on-surface-variant">Claims are cross-referenced against
+                            three independent authoritative databases: academic journals, government filings, and
+                            primary news wires.</p>
+                    </div>
+                    <div class="bg-surface-container-low p-5 rounded-xl border border-outline-variant/30">
+                        <div
+                            class="mb-3 w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary"
+                                data-icon="fact_check">fact_check</span>
+                        </div>
+                        <h4 class="font-label-sm text-label-sm text-primary mb-2 uppercase">2. Dialectical Analysis</h4>
+                        <p class="font-body-md text-[14px] text-on-surface-variant">Our LLM-Auditor evaluates semantic
+                            nuances to identify cherry-picking, lack of context, or manipulative framing within seconds.
+                        </p>
+                    </div>
+                    <div class="bg-surface-container-low p-5 rounded-xl border border-outline-variant/30">
+                        <div
+                            class="mb-3 w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary" data-icon="verified">verified</span>
+                        </div>
+                        <h4 class="font-label-sm text-label-sm text-primary mb-2 uppercase">3. Verdict Ledger</h4>
+                        <p class="font-body-md text-[14px] text-on-surface-variant">Every audit is hashed to our public
+                            transparency ledger, ensuring the history of truth stays immutable and verifiable for
+                            everyone.</p>
+                    </div>
+                </div>
+            </details>
+        </section>
+    </main>
+    <!-- BottomNavBar -->
+    <nav
+        class="md:hidden fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container-low dark:bg-surface-container-low border-t border-outline-variant shadow-sm flex justify-around items-center pt-2 pb-safe px-4">
+        <div
+            class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-5 py-1 scale-95 active:scale-90 transition-transform duration-200">
+            <span class="material-symbols-outlined" data-icon="fact_check">fact_check</span>
+            <span class="font-label-sm text-label-sm">Audit</span>
+        </div>
+        <div
+            class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest transition-all scale-95 active:scale-90 duration-200">
+            <span class="material-symbols-outlined" data-icon="history">history</span>
+            <span class="font-label-sm text-label-sm">History</span>
+        </div>
+        <div
+            class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest transition-all scale-95 active:scale-90 duration-200">
+            <span class="material-symbols-outlined" data-icon="database">database</span>
+            <span class="font-label-sm text-label-sm">Sources</span>
+        </div>
+        <div
+            class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest transition-all scale-95 active:scale-90 duration-200">
+            <span class="material-symbols-outlined" data-icon="person">person</span>
+            <span class="font-label-sm text-label-sm">Profile</span>
+        </div>
+    </nav>
+    <!-- Background Decorative Elements -->
+    <div class="fixed top-0 left-0 w-full h-full pointer-events-none -z-10 opacity-30">
+        <div class="absolute top-1/4 -left-20 w-96 h-96 bg-primary-container/5 blur-[120px] rounded-full"></div>
+        <div class="absolute bottom-1/4 -right-20 w-80 h-80 bg-tertiary-container/5 blur-[100px] rounded-full"></div>
+    </div>
+    <script>
+        function fillClaim(text) {
+            const textarea = document.getElementById('claim-input');
+            textarea.value = text;
+            textarea.focus();
+
+            // Subtle animation for feedback
+            textarea.parentElement.parentElement.classList.add('scale-[1.01]');
+            setTimeout(() => {
+                textarea.parentElement.parentElement.classList.remove('scale-[1.01]');
+            }, 200);
+        }
+
+        // Add interaction for the pill
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const pill = document.getElementById('import-pill');
+                pill.classList.remove('opacity-0', 'translate-y-4');
+                pill.classList.add('opacity-100', 'translate-y-0');
+            }, 500);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+{
+  "name": "ClaimLens Fact Auditing Gateway",
+  "short_name": "ClaimLens",
+  "description": "Mobile-first fact auditing gateway using Vertex AI and Elastic",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B0F19",
+  "theme_color": "#0B0F19",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "share_target": {
+    "action": "/",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  }
+}
