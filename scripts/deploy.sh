@@ -3,7 +3,7 @@
 set -e
 
 PROJECT_ID="dataagentplatform"
-REGION="europe-west3"
+REGION="europe-west4"
 SERVICE_NAME="claimlens"
 
 echo "=========================================================="
